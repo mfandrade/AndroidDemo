@@ -3,7 +3,7 @@
 
     <string name="app_name">Cadastro Caelum</string>
     <string name="hello_world">Hello world!</string>
-    <!-- activity_form_aluno.xml -->
+    <!-- ********************************************************************** -->
     <string name="title_activity_form_aluno">Novo aluno</string>
     <string name="txt_foto">Foto do aluno</string>
     <string name="txt_nome">Nome</string>
@@ -16,5 +16,7 @@
     <string name="form_aluno_edtWebsite_hint">Preencha o site</string>
     <string name="txt_mediaFinal">Média final</string>
     <string name="txt_salvar">Salvar</string>
+    <!-- ********************************************************************** -->
+    <string name="txt_novo">Novo</string>
 
 </resources>
