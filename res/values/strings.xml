@@ -3,5 +3,18 @@
 
     <string name="app_name">Cadastro Caelum</string>
     <string name="hello_world">Hello world!</string>
+    <!-- activity_form_aluno.xml -->
+    <string name="title_activity_form_aluno">Novo aluno</string>
+    <string name="txt_foto">Foto do aluno</string>
+    <string name="txt_nome">Nome</string>
+    <string name="form_aluno_edtNome_hint">Preencha o nome</string>
+    <string name="txt_endereco">Endereço</string>
+    <string name="form_aluno_edtEndereco_hint">Preencha o endereço</string>
+    <string name="txt_telefone">Telefone</string>
+    <string name="form_aluno_edtTelefone_hint">Preencha o telefone</string>
+    <string name="txt_website">Website</string>
+    <string name="form_aluno_edtWebsite_hint">Preencha o site</string>
+    <string name="txt_mediaFinal">Média final</string>
+    <string name="txt_salvar">Salvar</string>
 
 </resources>
