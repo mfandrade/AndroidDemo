@@ -26,9 +26,11 @@ public class ListaAlunosActivity extends Activity {
     @Override
     protected void onResume() {
 	super.onResume();
+	//
 	AlunoDAO dao = new AlunoDAO(this);
 	List<Aluno> alunos = dao.getAll();
-	ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunos);
+	ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this,
+		android.R.layout.simple_list_item_1, alunos);
 	_lstAlunos.setAdapter(adapter);
     }
 
