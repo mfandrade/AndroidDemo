@@ -1,4 +1,4 @@
-package com.wordpress.mfandrade.cadastro;
+package com.wordpress.mfandrade.cadastro.activity;
 
 import android.app.*;
 import android.os.*;
