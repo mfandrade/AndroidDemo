@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Cadastro Caelum</string>
     <string name="hello_world">Hello world!</string>
+    <string name="app_name">Cadastro Caelum</string>
+    <!-- ********************************************************************** -->
+    <string name="title_activity_lista_alunos">Relação de alunos</string>
+    <string name="txt_novo">Novo</string>
     <!-- ********************************************************************** -->
     <string name="title_activity_form_aluno">Novo aluno</string>
     <string name="txt_foto">Foto do aluno</string>
@@ -17,6 +20,5 @@
     <string name="txt_mediaFinal">Média final</string>
     <string name="txt_salvar">Salvar</string>
     <!-- ********************************************************************** -->
-    <string name="txt_novo">Novo</string>
 
 </resources>
