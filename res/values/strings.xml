@@ -20,5 +20,6 @@
     <string name="txt_mediaFinal">Média final</string>
     <string name="txt_salvar">Salvar</string>
     <!-- ********************************************************************** -->
+    <string name="ctx_deletar">Deletar</string>
 
 </resources>

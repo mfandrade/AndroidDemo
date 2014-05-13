@@ -4,6 +4,7 @@ import android.app.*;
 import android.content.*;
 import android.os.*;
 import android.view.*;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.*;
 import java.util.*;
 import com.wordpress.mfandrade.cadastro.*;
@@ -20,6 +21,7 @@ public class ListaAlunosActivity extends Activity
         setContentView(R.layout.activity_lista_alunos);
         //
         _lstAlunos = (ListView) findViewById(R.id.list_alunos_lstAlunos);
+        registerForContextMenu(_lstAlunos);
     }
 
     @Override
@@ -51,5 +53,15 @@ public class ListaAlunosActivity extends Activity
     {
         getMenuInflater().inflate(R.menu.lista_alunos_menu, menu);
         return true;
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo)
+    {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        //menu.add(getResources().getString(R.string.ctx_ligar));
+        //menu.add(getResources().getString(R.string.ctx_enviar_sms));
+        //menu.add(getResources().getString(R.string.ctx_mostrar_no_mapa));
+        menu.add(getResources().getString(R.string.ctx_deletar));
     }
 }
