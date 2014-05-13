@@ -5,7 +5,11 @@ import android.content.*;
 import android.os.*;
 import android.view.*;
 import android.widget.*;
+
+import java.util.*;
+
 import com.wordpress.mfandrade.cadastro.*;
+import com.wordpress.mfandrade.cadastro.dao.*;
 
 public class ListaAlunosActivity extends Activity {
 	@Override
@@ -14,7 +18,8 @@ public class ListaAlunosActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lista_alunos);
 		//
-		Aluno[] alunos = { new Aluno("Huguinho"), new Aluno("Zezinho"), new Aluno("Luizinho") };
+		AlunoDAO dao = new AlunoDAO(this);
+		List<Aluno> alunos = dao.getAll();
 		ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunos);
 		ListView lstAlunos = (ListView) findViewById(R.id.list_alunos_lstAlunos);
 		lstAlunos.setAdapter(adapter);

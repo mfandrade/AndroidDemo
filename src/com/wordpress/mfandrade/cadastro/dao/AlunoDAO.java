@@ -1,6 +1,7 @@
 package com.wordpress.mfandrade.cadastro.dao;
 
 import android.content.*;
+import android.database.*;
 import android.database.sqlite.*;
 
 import java.util.*;
@@ -8,7 +9,7 @@ import java.util.*;
 import com.wordpress.mfandrade.cadastro.*;
 
 public class AlunoDAO extends SQLiteOpenHelper {
-    private static final int DB_VERSION = 2;
+    private static final int DB_VERSION = 3;
     private static final String DB_NAME = "CadastroCaelum";
     private static final String TABLE_NAME = "alunos";
 
@@ -79,6 +80,24 @@ public class AlunoDAO extends SQLiteOpenHelper {
 
     public List<Aluno> getAll() {
 
-	return null;
+	List<Aluno> ret = new LinkedList<>();
+	//
+	SQLiteDatabase db = getReadableDatabase();
+	Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+	while (c.moveToNext()) {
+	    //
+	    Aluno aluno = new Aluno();
+	    aluno.setNome(c.getString(c.getColumnIndex("nome")));
+	    aluno.setEndereco(c.getString(c.getColumnIndex("endereco")));
+	    aluno.setTelefone(c.getString(c.getColumnIndex("telefone")));
+	    aluno.setWebsite(c.getString(c.getColumnIndex("website")));
+	    aluno.setMediaFinal(c.getFloat(c.getColumnIndex("mediaFinal")));
+	    //
+	    ret.add(aluno);
+	}
+	db.close();
+	c.close();
+	//
+	return ret;
     }
 }
