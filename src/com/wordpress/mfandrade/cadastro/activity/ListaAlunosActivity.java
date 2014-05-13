@@ -1,6 +1,7 @@
 package com.wordpress.mfandrade.cadastro.activity;
 
 import android.app.*;
+import android.content.*;
 import android.os.*;
 import android.view.*;
 import android.widget.*;
@@ -17,6 +18,18 @@ public class ListaAlunosActivity extends Activity {
 		ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunos);
 		ListView lstAlunos = (ListView) findViewById(R.id.list_alunos_lstAlunos);
 		lstAlunos.setAdapter(adapter);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	
+		switch (item.getItemId()) {
+		case R.id.lista_alunos_menu_novo:
+			Intent formAluno = new Intent(this, FormAlunoActivity.class);
+			startActivity(formAluno);
+			return false;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 	
 	@Override
