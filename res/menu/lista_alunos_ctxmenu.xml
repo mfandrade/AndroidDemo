@@ -9,7 +9,7 @@
         android:title="@string/ctx_enviar_sms"/>
     <item
         android:id="@+id/lista_alunos_ctxmenu_acessar_website"
-        android:title="@string/ctx_acessar_site"/>
+        android:title="@string/ctx_acessar_website"/>
     <item
         android:id="@+id/lista_alunos_ctxmenu_mapa"
         android:title="@string/ctx_mostrar_no_mapa"/>
