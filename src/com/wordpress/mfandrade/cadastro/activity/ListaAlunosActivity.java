@@ -5,7 +5,6 @@ import android.content.*;
 import android.os.*;
 import android.view.*;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.MenuItem.OnMenuItemClickListener;
 import android.widget.*;
 import android.widget.AdapterView.OnItemLongClickListener;
 import java.util.*;
@@ -23,8 +22,7 @@ public class ListaAlunosActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alunos);
         //
-        _lstAlunos = (ListView) findViewById(R.id.list_alunos_lstAlunos);
-        registerForContextMenu(_lstAlunos);
+        _lstAlunos = (ListView) findViewById(R.id.lista_alunos_lstAlunos);
         _lstAlunos.setOnItemLongClickListener(new OnItemLongClickListener()
         {
             @Override
@@ -34,6 +32,7 @@ public class ListaAlunosActivity extends Activity
                 return false;
             }
         });
+        registerForContextMenu(_lstAlunos);
     }
 
     @Override
@@ -68,12 +67,22 @@ public class ListaAlunosActivity extends Activity
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.lista_alunos_menu, menu);
-        MenuItem ctxDeletar = (MenuItem) findViewById(R.id.lista_alunos_ctxmenu_deletar);
-        ctxDeletar.setOnMenuItemClickListener(new OnMenuItemClickListener()
+        return true;
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo)
+    {
+        getMenuInflater().inflate(R.menu.lista_alunos_ctxmenu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
         {
-            @Override
-            public boolean onMenuItemClick(MenuItem item)
-            {//@formatter:off
+            case R.id.lista_alunos_ctxmenu_deletar:
+                //@formatter:off
                 new AlertDialog.Builder(ListaAlunosActivity.this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle(R.string.ctx_deletar)
@@ -81,7 +90,7 @@ public class ListaAlunosActivity extends Activity
                 .setPositiveButton(R.string.sim, new DialogInterface.OnClickListener()
                 {
                     @Override
-                    public void onClick(DialogInterface dialog, int which)
+                    public void onClick(DialogInterface arg0, int arg1)
                     {
                         AlunoDAO dao = new AlunoDAO(ListaAlunosActivity.this);
                         dao.delete(_selecionado.getId());
@@ -90,14 +99,8 @@ public class ListaAlunosActivity extends Activity
                 })
                 .setNegativeButton(R.string.nao, null).show();
                 return false;
-            }//@formatter:on
-        });
-        return true;
-    }
-
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo)
-    {
-        getMenuInflater().inflate(R.menu.lista_alunos_ctxmenu, menu);
+                //@formatter:on
+        }
+        return super.onContextItemSelected(item);
     }
 }
