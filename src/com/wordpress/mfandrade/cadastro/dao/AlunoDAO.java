@@ -63,7 +63,8 @@ public class AlunoDAO extends SQLiteOpenHelper
     public int delete(long id)
     {
         SQLiteDatabase db = getWritableDatabase();
-        int ret = db.delete(TABLE_NAME, "id", new String[] { Long.toString(id) });
+        String[] arg = { Long.toString(id) };
+        int ret = db.delete(TABLE_NAME, "id=?", arg);
         db.close();
         return ret;
     }
@@ -89,6 +90,7 @@ public class AlunoDAO extends SQLiteOpenHelper
         while (c.moveToNext())
         {
             Aluno aluno = new Aluno();
+            aluno.setId(c.getLong(c.getColumnIndex("id")));
             aluno.setNome(c.getString(c.getColumnIndex("nome")));
             aluno.setEndereco(c.getString(c.getColumnIndex("endereco")));
             aluno.setTelefone(c.getString(c.getColumnIndex("telefone")));
