@@ -40,7 +40,11 @@ public class ListaAlunosActivity extends Activity
     protected void onResume()
     {
         super.onResume();
-        //
+        recarregarLista();
+    }
+
+    private void recarregarLista()
+    {
         AlunoDAO dao = new AlunoDAO(this);
         List<Aluno> alunos = dao.getAll();
         ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunos);
@@ -69,11 +73,24 @@ public class ListaAlunosActivity extends Activity
         {
             @Override
             public boolean onMenuItemClick(MenuItem item)
-            {
-                AlunoDAO dao = new AlunoDAO(ListaAlunosActivity.this);
-                dao.delete(_selecionado.getId());
+            {//@formatter:off
+                new AlertDialog.Builder(ListaAlunosActivity.this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle(R.string.ctx_deletar)
+                .setMessage(R.string.quer_mesmo_deletar)
+                .setPositiveButton(R.string.sim, new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        AlunoDAO dao = new AlunoDAO(ListaAlunosActivity.this);
+                        dao.delete(_selecionado.getId());
+                        recarregarLista();
+                    }
+                })
+                .setNegativeButton(R.string.nao, null).show();
                 return false;
-            }
+            }//@formatter:on
         });
         return true;
     }
