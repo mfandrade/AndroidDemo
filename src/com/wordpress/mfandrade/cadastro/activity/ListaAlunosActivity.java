@@ -5,6 +5,7 @@ import android.content.*;
 import android.os.*;
 import android.view.*;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.widget.*;
 import android.widget.AdapterView.OnItemLongClickListener;
 import java.util.*;
@@ -63,6 +64,17 @@ public class ListaAlunosActivity extends Activity
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.lista_alunos_menu, menu);
+        MenuItem ctxDeletar = (MenuItem) findViewById(R.id.lista_alunos_ctxmenu_deletar);
+        ctxDeletar.setOnMenuItemClickListener(new OnMenuItemClickListener()
+        {
+            @Override
+            public boolean onMenuItemClick(MenuItem item)
+            {
+                AlunoDAO dao = new AlunoDAO(ListaAlunosActivity.this);
+                dao.delete(_selecionado.getId());
+                return false;
+            }
+        });
         return true;
     }
 
