@@ -60,8 +60,13 @@ public class AlunoDAO extends SQLiteOpenHelper
         return ret;
     }
 
-    public void delete(long id)
-    {}
+    public int delete(long id)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        int ret = db.delete(TABLE_NAME, "id", new String[] { Long.toString(id) });
+        db.close();
+        return ret;
+    }
 
     public void update(long id, String chave, Object valor)
     {}
@@ -79,24 +84,20 @@ public class AlunoDAO extends SQLiteOpenHelper
     public List<Aluno> getAll()
     {
         List<Aluno> ret = new LinkedList<>();
-        //
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
         while (c.moveToNext())
         {
-            //
             Aluno aluno = new Aluno();
             aluno.setNome(c.getString(c.getColumnIndex("nome")));
             aluno.setEndereco(c.getString(c.getColumnIndex("endereco")));
             aluno.setTelefone(c.getString(c.getColumnIndex("telefone")));
             aluno.setWebsite(c.getString(c.getColumnIndex("website")));
             aluno.setMediaFinal(c.getFloat(c.getColumnIndex("mediaFinal")));
-            //
             ret.add(aluno);
         }
         db.close();
         c.close();
-        //
         return ret;
     }
 }
