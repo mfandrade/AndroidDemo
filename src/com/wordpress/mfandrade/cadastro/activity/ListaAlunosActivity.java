@@ -58,10 +58,6 @@ public class ListaAlunosActivity extends Activity
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo)
     {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        //menu.add(getResources().getString(R.string.ctx_ligar));
-        //menu.add(getResources().getString(R.string.ctx_enviar_sms));
-        //menu.add(getResources().getString(R.string.ctx_mostrar_no_mapa));
-        menu.add(getResources().getString(R.string.ctx_deletar));
+        getMenuInflater().inflate(R.menu.lista_alunos_ctxmenu, menu);
     }
 }

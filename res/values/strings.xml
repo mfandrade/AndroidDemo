@@ -20,6 +20,10 @@
     <string name="txt_mediaFinal">Média final</string>
     <string name="txt_salvar">Salvar</string>
     <!-- ********************************************************************** -->
+    <string name="ctx_ligar">Ligar</string>
+    <string name="ctx_enviar_sms">Enviar SMS</string>
+    <string name="ctx_mostrar_no_mapa">Mostrar no mapa</string>
+    <string name="ctx_acessar_website">Acessar website</string>
     <string name="ctx_deletar">Deletar&#x2026;</string>
 
 </resources>

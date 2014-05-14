@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/lista_alunos_ctxmenu_ligar"
+        android:title="@string/ctx_ligar"/>
+    <item
+        android:id="@+id/lista_alunos_ctxmenu_enviar_sms"
+        android:title="@string/ctx_enviar_sms"/>
+    <item
+        android:id="@+id/lista_alunos_ctxmenu_acessar_website"
+        android:title="@string/ctx_acessar_website"/>
+    <item
+        android:id="@+id/lista_alunos_ctxmenu_mapa"
+        android:title="@string/ctx_mostrar_no_mapa"/>
+    <item
+        android:id="@+id/lista_alunos_ctxmenu_deletar"
+        android:title="@string/ctx_deletar"/>
+
+</menu>
