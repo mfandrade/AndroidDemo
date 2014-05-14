@@ -83,21 +83,21 @@ public class ListaAlunosActivity extends Activity
         {
             case R.id.lista_alunos_ctxmenu_deletar:
                 //@formatter:off
-                new AlertDialog.Builder(ListaAlunosActivity.this)
+                new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle(R.string.ctx_deletar)
                 .setMessage(R.string.quer_mesmo_deletar)
+                .setNegativeButton(R.string.nao, null)
                 .setPositiveButton(R.string.sim, new DialogInterface.OnClickListener()
                 {
                     @Override
-                    public void onClick(DialogInterface arg0, int arg1)
+                    public void onClick(DialogInterface dialog, int which)
                     {
                         AlunoDAO dao = new AlunoDAO(ListaAlunosActivity.this);
                         dao.delete(_selecionado.getId());
                         recarregarLista();
                     }
-                })
-                .setNegativeButton(R.string.nao, null).show();
+                }).show();
                 return false;
                 //@formatter:on
         }
