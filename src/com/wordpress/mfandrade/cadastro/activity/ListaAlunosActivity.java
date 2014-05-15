@@ -2,15 +2,15 @@ package com.wordpress.mfandrade.cadastro.activity;
 
 import android.app.*;
 import android.content.*;
+import android.net.*;
 import android.os.*;
 import android.view.*;
-import android.view.ContextMenu.ContextMenuInfo;
+import android.view.ContextMenu.*;
 import android.widget.*;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
-import java.util.*;
+import android.widget.AdapterView.*;
 import com.wordpress.mfandrade.cadastro.*;
 import com.wordpress.mfandrade.cadastro.dao.*;
+import java.util.*;
 
 public class ListaAlunosActivity extends Activity
 {
@@ -92,6 +92,11 @@ public class ListaAlunosActivity extends Activity
     {
         switch (item.getItemId())
         {
+			case R.id.lista_alunos_ctxmenu_ligar:
+                Intent call = new Intent(Intent.ACTION_CALL);
+                call.setData(Uri.parse("tel:" + _selecionado.getTelefone()));
+                startActivity(call);
+                break;
             case R.id.lista_alunos_ctxmenu_deletar:
                 //@formatter:off
                 new AlertDialog.Builder(this)
