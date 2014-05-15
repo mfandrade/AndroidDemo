@@ -4,12 +4,13 @@ import java.io.*;
 
 public class Aluno implements Serializable
 {
-    private Long   _id;
+    private static final long serialVersionUID = 2581691150319034797L;
+    private Long _id;
     private String _nome;
     private String _endereco;
     private String _telefone;
     private String _website;
-    private Float  _mediaFinal;
+    private Float _mediaFinal;
 
     public Aluno()
     {}

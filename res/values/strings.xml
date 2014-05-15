@@ -19,7 +19,7 @@
     <string name="form_aluno_edtWebsite_hint">Preencha o site</string>
     <string name="txt_mediaFinal">Média final</string>
     <string name="txt_salvar">Salvar</string>
-	<string name="txt_atualizar">Atualizar</string>
+    <string name="txt_atualizar">Atualizar</string>
     <!-- ********************************************************************** -->
     <string name="ctx_ligar">Ligar</string>
     <string name="ctx_enviar_sms">Enviar SMS</string>

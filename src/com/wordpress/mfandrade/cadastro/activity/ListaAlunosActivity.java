@@ -6,16 +6,16 @@ import android.os.*;
 import android.view.*;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.*;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import java.util.*;
 import com.wordpress.mfandrade.cadastro.*;
 import com.wordpress.mfandrade.cadastro.dao.*;
-import android.widget.AdapterView.*;
 
 public class ListaAlunosActivity extends Activity
 {
     private ListView _lstAlunos;
-    private Aluno    _selecionado;
+    private Aluno _selecionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,8 +34,8 @@ public class ListaAlunosActivity extends Activity
                 return false;
             }
         });
-		_lstAlunos.setOnItemClickListener(new OnItemClickListener()
-		{
+        _lstAlunos.setOnItemClickListener(new OnItemClickListener()
+        {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int pos, long id)
             {

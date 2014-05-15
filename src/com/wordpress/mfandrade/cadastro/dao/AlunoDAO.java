@@ -8,15 +8,15 @@ import com.wordpress.mfandrade.cadastro.*;
 
 public class AlunoDAO extends SQLiteOpenHelper
 {
-    private static final int    DATABASE_VERSION = 4;
-    private static final String DATABASE_NAME    = "CadastroCaelum";
-    private static final String TABLE_NAME       = "alunos";
-	private static final String _ID              = "id";
-	private static final String _NAME            = "nome";
-	private static final String _ADDRESS         = "endereco";
-	private static final String _PHONE           = "telefone";
-	private static final String _WEBSITE         = "website";
-	private static final String _FGRADE          = "mediaFinal";
+    private static final int DATABASE_VERSION = 4;
+    private static final String DATABASE_NAME = "CadastroCaelum";
+    private static final String TABLE_NAME = "alunos";
+    private static final String _ID = "id";
+    private static final String _NAME = "nome";
+    private static final String _ADDRESS = "endereco";
+    private static final String _PHONE = "telefone";
+    private static final String _WEBSITE = "website";
+    private static final String _FGRADE = "mediaFinal";
 
     public AlunoDAO(Context context)
     {
@@ -30,12 +30,12 @@ public class AlunoDAO extends SQLiteOpenHelper
         sb.append("CREATE TABLE ");
         sb.append(TABLE_NAME);
         sb.append("(");
-        sb.append(_ID      + " INTEGER PRIMARY KEY, ");
-        sb.append(_NAME    + " TEXT UNIQUE NOT NULL, ");
+        sb.append(_ID + " INTEGER PRIMARY KEY, ");
+        sb.append(_NAME + " TEXT UNIQUE NOT NULL, ");
         sb.append(_ADDRESS + " TEXT NOT NULL, ");
-        sb.append(_PHONE   + " TEXT, ");
+        sb.append(_PHONE + " TEXT, ");
         sb.append(_WEBSITE + " TEXT, ");
-        sb.append(_FGRADE  + " REAL ");
+        sb.append(_FGRADE + " REAL ");
         sb.append(")");
         String create = sb.toString();
         db.execSQL(create); //, new String[] {_ID, _NAME, _ADDRESS, _PHONE, _WEBSITE, _FGRADE});
@@ -50,51 +50,41 @@ public class AlunoDAO extends SQLiteOpenHelper
 
     public int delete(Aluno aluno)
     {
-		if (aluno == null || aluno.getId() == null)
-		{
-			throw new IllegalArgumentException();
-		}
-		Long id = aluno.getId();
-
+        if (aluno == null || aluno.getId() == null) { throw new IllegalArgumentException(); }
+        Long id = aluno.getId();
         SQLiteDatabase db = getWritableDatabase();
-        int nol = db.delete(TABLE_NAME, "id=?", new String[] {Long.toString(id)});
+        int nol = db.delete(TABLE_NAME, "id=?", new String[] { Long.toString(id) });
         db.close();
         return nol;
     }
 
-	public long insertOrUpdate(Aluno aluno)
+    public long insertOrUpdate(Aluno aluno)
     {
-        if (aluno == null)
-        {
-            throw new IllegalArgumentException();
-        }
+        if (aluno == null) { throw new IllegalArgumentException(); }
         ContentValues data = new ContentValues();
         data.put(_NAME, aluno.getNome());
         data.put(_ADDRESS, aluno.getEndereco());
         data.put(_PHONE, aluno.getTelefone());
         data.put(_WEBSITE, aluno.getWebsite());
         data.put(_FGRADE, aluno.getMediaFinal());
-
         SQLiteDatabase db = getWritableDatabase();
-		try
-		{
+        try
+        {
             Long id = aluno.getId();
             if (id == null)
             {
                 id = db.insert(TABLE_NAME, null, data);
-            }
-            else
+            } else
             {
-				data.put(_ID, id);
+                data.put(_ID, id);
                 db.update(TABLE_NAME, data, "id=?", new String[] { Long.toString(id) });
-            }	
+            }
             return id;
-        }
-        finally
+        } finally
         {
             db.close();
         }
-	}
+    }
 
     public Aluno getById(Long id)
     {

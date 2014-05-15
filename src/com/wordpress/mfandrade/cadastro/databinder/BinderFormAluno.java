@@ -6,11 +6,11 @@ import com.wordpress.mfandrade.cadastro.activity.*;
 
 public class BinderFormAluno
 {
-    private Aluno     _aluno;
-    private EditText  _edtNome;
-    private EditText  _edtEndereco;
-    private EditText  _edtTelefone;
-    private EditText  _edtWebsite;
+    private Aluno _aluno;
+    private EditText _edtNome;
+    private EditText _edtEndereco;
+    private EditText _edtTelefone;
+    private EditText _edtWebsite;
     private RatingBar _ratMediaFinal;
 
     public BinderFormAluno(FormAlunoActivity form)
@@ -23,15 +23,15 @@ public class BinderFormAluno
         _ratMediaFinal = (RatingBar) form.findViewById(R.id.form_aluno_ratMediaFinal);
     }
 
-	public void populateForm(Aluno aluno)
-	{
-		_edtNome.setText(aluno.getNome());
-		_edtEndereco.setText(aluno.getEndereco());
-		_edtTelefone.setText(aluno.getTelefone());
-		_edtWebsite.setText(aluno.getWebsite());
-		_ratMediaFinal.setProgress(aluno.getMediaFinal().intValue());
-		_aluno = aluno;
-	}
+    public void populateForm(Aluno aluno)
+    {
+        _edtNome.setText(aluno.getNome());
+        _edtEndereco.setText(aluno.getEndereco());
+        _edtTelefone.setText(aluno.getTelefone());
+        _edtWebsite.setText(aluno.getWebsite());
+        _ratMediaFinal.setProgress(aluno.getMediaFinal().intValue());
+        _aluno = aluno;
+    }
 
     public Aluno getAluno()
     {
