@@ -21,24 +21,25 @@ public class FormAlunoActivity extends Activity
         setContentView(R.layout.activity_form_aluno);
         _binder = new BinderFormAluno(this);
         //
-        Button btnSalvar = (Button) findViewById(R.id.form_aluno_btnSalvar);
+		Button btnSalvar = (Button) findViewById(R.id.form_aluno_btnSalvar);
+		
+		Intent intent = getIntent();
+        Aluno dadosAluno = (Aluno) intent.getSerializableExtra("dadosAluno");
+		if(dadosAluno != null)
+		{
+			btnSalvar.setText(R.string.txt_atualizar);
+			_binder.populateForm(dadosAluno);
+		}
         btnSalvar.setOnClickListener(new OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                Aluno aluno = _binder.getAluno();
+				Aluno aluno = _binder.getAluno();
                 AlunoDAO dao = new AlunoDAO(FormAlunoActivity.this);
-                dao.insert(aluno);
+                dao.insertOrUpdate(aluno);
                 finish();
             }
         });
-		
-		Intent intent = getIntent();
-        Aluno dadosAluno = (Aluno) intent.getSerializableExtra("dadosAluno");
-        if(dadosAluno != null)
-		{
-			_binder.populateForm(dadosAluno);
-		}
     }
 }

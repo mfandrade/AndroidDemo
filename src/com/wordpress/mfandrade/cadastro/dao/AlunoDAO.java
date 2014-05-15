@@ -17,7 +17,7 @@ public class AlunoDAO extends SQLiteOpenHelper
 	private static final String _PHONE           = "telefone";
 	private static final String _WEBSITE         = "website";
 	private static final String _FGRADE          = "mediaFinal";
-	
+
     public AlunoDAO(Context context)
     {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -48,22 +48,6 @@ public class AlunoDAO extends SQLiteOpenHelper
         onCreate(db);
     }
 
-    public long insert(Aluno aluno)
-    {
-        ContentValues data = new ContentValues();
-        data.put(_NAME, aluno.getNome());
-        data.put(_ADDRESS, aluno.getEndereco());
-        data.put(_PHONE, aluno.getTelefone());
-        data.put(_WEBSITE, aluno.getWebsite());
-        data.put(_FGRADE, aluno.getMediaFinal());
-        //
-        SQLiteDatabase db = getWritableDatabase();
-        long id = db.insert(TABLE_NAME, null, data);
-        db.close();
-        //
-        return id;
-    }
-
     public int delete(Aluno aluno)
     {
 		if (aluno == null || aluno.getId() == null)
@@ -78,25 +62,38 @@ public class AlunoDAO extends SQLiteOpenHelper
         return nol;
     }
 
-	public int update(Aluno aluno)
-	{
-		if (aluno == null || aluno.getId() ==  null)
-		{
-			throw new IllegalArgumentException();
-		}
-		Long id = aluno.getId();
-
-		ContentValues data = new ContentValues();
-		data.put(_NAME, aluno.getNome());
+	public long insertOrUpdate(Aluno aluno)
+    {
+        if (aluno == null)
+        {
+            throw new IllegalArgumentException();
+        }
+        ContentValues data = new ContentValues();
+        data.put(_NAME, aluno.getNome());
         data.put(_ADDRESS, aluno.getEndereco());
         data.put(_PHONE, aluno.getTelefone());
         data.put(_WEBSITE, aluno.getWebsite());
         data.put(_FGRADE, aluno.getMediaFinal());
 
-		SQLiteDatabase db = getWritableDatabase();
-		int nol = db.update(TABLE_NAME, data, "id=?", new String[] {Long.toString(id)});
-		db.close();
-		return nol;
+        SQLiteDatabase db = getWritableDatabase();
+		try
+		{
+            Long id = aluno.getId();
+            if (id == null)
+            {
+                id = db.insert(TABLE_NAME, null, data);
+            }
+            else
+            {
+				data.put(_ID, id);
+                db.update(TABLE_NAME, data, "id=?", new String[] { Long.toString(id) });
+            }	
+            return id;
+        }
+        finally
+        {
+            db.close();
+        }
 	}
 
     public Aluno getById(Long id)

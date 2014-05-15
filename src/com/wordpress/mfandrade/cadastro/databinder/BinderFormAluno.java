@@ -6,7 +6,7 @@ import com.wordpress.mfandrade.cadastro.activity.*;
 
 public class BinderFormAluno
 {
-    private Aluno     aluno;
+    private Aluno     _aluno;
     private EditText  _edtNome;
     private EditText  _edtEndereco;
     private EditText  _edtTelefone;
@@ -15,7 +15,7 @@ public class BinderFormAluno
 
     public BinderFormAluno(FormAlunoActivity form)
     {
-        aluno = new Aluno();
+        _aluno = new Aluno();
         _edtNome = (EditText) form.findViewById(R.id.form_aluno_edtNome);
         _edtEndereco = (EditText) form.findViewById(R.id.form_aluno_edtEndereco);
         _edtTelefone = (EditText) form.findViewById(R.id.form_aluno_edtTelefone);
@@ -25,21 +25,21 @@ public class BinderFormAluno
 
 	public void populateForm(Aluno aluno)
 	{
-		Toast.makeText(_edtNome.getContext(), "test " + aluno.getNome(), Toast.LENGTH_LONG).show();
 		_edtNome.setText(aluno.getNome());
 		_edtEndereco.setText(aluno.getEndereco());
 		_edtTelefone.setText(aluno.getTelefone());
 		_edtWebsite.setText(aluno.getWebsite());
 		_ratMediaFinal.setProgress(aluno.getMediaFinal().intValue());
+		_aluno = aluno;
 	}
 
     public Aluno getAluno()
     {
-        aluno.setNome(_edtNome.getText().toString());
-        aluno.setEndereco(_edtEndereco.getText().toString());
-        aluno.setTelefone(_edtTelefone.getText().toString());
-        aluno.setWebsite(_edtWebsite.getText().toString());
-        aluno.setMediaFinal(Float.valueOf(_ratMediaFinal.getProgress()));
-        return aluno;
+        _aluno.setNome(_edtNome.getText().toString());
+        _aluno.setEndereco(_edtEndereco.getText().toString());
+        _aluno.setTelefone(_edtTelefone.getText().toString());
+        _aluno.setWebsite(_edtWebsite.getText().toString());
+        _aluno.setMediaFinal(Float.valueOf(_ratMediaFinal.getProgress()));
+        return _aluno;
     }
 }
