@@ -16,8 +16,8 @@ public class AlunoDAO extends SQLiteOpenHelper
 	private static final String _ADDRESS         = "endereco";
 	private static final String _PHONE           = "telefone";
 	private static final String _WEBSITE         = "website";
-	private static final String _FGRADE      = "mediaFinal";
-
+	private static final String _FGRADE          = "mediaFinal";
+	
     public AlunoDAO(Context context)
     {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

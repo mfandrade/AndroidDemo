@@ -10,6 +10,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import java.util.*;
 import com.wordpress.mfandrade.cadastro.*;
 import com.wordpress.mfandrade.cadastro.dao.*;
+import android.widget.AdapterView.*;
 
 public class ListaAlunosActivity extends Activity
 {
@@ -23,6 +24,7 @@ public class ListaAlunosActivity extends Activity
         setContentView(R.layout.activity_lista_alunos);
         //
         _lstAlunos = (ListView) findViewById(R.id.lista_alunos_lstAlunos);
+        registerForContextMenu(_lstAlunos);
         _lstAlunos.setOnItemLongClickListener(new OnItemLongClickListener()
         {
             @Override
@@ -32,7 +34,16 @@ public class ListaAlunosActivity extends Activity
                 return false;
             }
         });
-        registerForContextMenu(_lstAlunos);
+		_lstAlunos.setOnItemClickListener(new OnItemClickListener()
+		{
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View v, int pos, long id)
+            {
+                Intent formAluno = new Intent(ListaAlunosActivity.this, FormAlunoActivity.class);
+                formAluno.putExtra("dados_aluno", (Aluno) adapter.getItemAtPosition(pos));
+                startActivity(formAluno);
+            }
+        });
     }
 
     @Override

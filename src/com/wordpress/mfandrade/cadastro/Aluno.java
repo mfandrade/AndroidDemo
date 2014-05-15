@@ -1,6 +1,8 @@
 package com.wordpress.mfandrade.cadastro;
 
-public class Aluno
+import java.io.*;
+
+public class Aluno implements Serializable
 {
     private Long   _id;
     private String _nome;
