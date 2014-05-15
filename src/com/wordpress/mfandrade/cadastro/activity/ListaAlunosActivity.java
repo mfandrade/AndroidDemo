@@ -94,7 +94,7 @@ public class ListaAlunosActivity extends Activity
                     public void onClick(DialogInterface dialog, int which)
                     {
                         AlunoDAO dao = new AlunoDAO(ListaAlunosActivity.this);
-                        dao.delete(_selecionado.getId());
+                        dao.delete(_selecionado);
                         recarregarLista();
                     }
                 }).show();

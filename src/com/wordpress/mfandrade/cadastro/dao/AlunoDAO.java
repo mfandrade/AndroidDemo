@@ -46,7 +46,6 @@ public class AlunoDAO extends SQLiteOpenHelper
     public long insert(Aluno aluno)
     {
         ContentValues data = new ContentValues();
-        //
         data.put("nome", aluno.getNome());
         data.put("endereco", aluno.getEndereco());
         data.put("telefone", aluno.getTelefone());
@@ -54,30 +53,48 @@ public class AlunoDAO extends SQLiteOpenHelper
         data.put("mediaFinal", aluno.getMediaFinal());
         //
         SQLiteDatabase db = getWritableDatabase();
-        long ret = db.insert(TABLE_NAME, null, data);
+        long id = db.insert(TABLE_NAME, null, data);
         db.close();
         //
-        return ret;
+        return id;
     }
 
-    public int delete(long id)
+    public int delete(Aluno aluno)
     {
+		if (aluno == null || aluno.getId() == null)
+		{
+			throw new IllegalArgumentException();
+		}
+		Long id = aluno.getId();
+
         SQLiteDatabase db = getWritableDatabase();
-        String[] arg = { Long.toString(id) };
-        int ret = db.delete(TABLE_NAME, "id=?", arg);
+        int nol = db.delete(TABLE_NAME, "id=?", new String[] {Long.toString(id)});
         db.close();
-        return ret;
+        return nol;
     }
 
-    public void update(long id, String chave, Object valor)
-    {}
+	public int update(Aluno aluno)
+	{
+		if (aluno == null || aluno.getId() ==  null)
+		{
+			throw new IllegalArgumentException();
+		}
+		Long id = aluno.getId();
 
-    public Aluno getById(long id)
-    {
-        return null;
-    }
+		ContentValues data = new ContentValues();
+		data.put("nome", aluno.getNome());
+		data.put("endereco", aluno.getEndereco());
+		data.put("telefone", aluno.getTelefone());
+		data.put("website", aluno.getWebsite());
+		data.put("mediaFinal", aluno.getMediaFinal());
 
-    public Aluno getByField(String chave, Object valor)
+		SQLiteDatabase db = getWritableDatabase();
+		int nol = db.update(TABLE_NAME, data, "id=?", new String[] {Long.toString(id)});
+		db.close();
+		return nol;
+	}
+
+    public Aluno getById(Long id)
     {
         return null;
     }
