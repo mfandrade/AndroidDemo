@@ -8,13 +8,19 @@ import com.wordpress.mfandrade.cadastro.*;
 
 public class AlunoDAO extends SQLiteOpenHelper
 {
-    private static final int    DB_VERSION = 3;
-    private static final String DB_NAME    = "CadastroCaelum";
-    private static final String TABLE_NAME = "alunos";
+    private static final int    DATABASE_VERSION = 4;
+    private static final String DATABASE_NAME    = "CadastroCaelum";
+    private static final String TABLE_NAME       = "alunos";
+	private static final String _ID              = "id";
+	private static final String _NAME            = "nome";
+	private static final String _ADDRESS         = "endereco";
+	private static final String _PHONE           = "telefone";
+	private static final String _WEBSITE         = "website";
+	private static final String _FGRADE      = "mediaFinal";
 
     public AlunoDAO(Context context)
     {
-        super(context, DB_NAME, null, DB_VERSION);
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
@@ -23,17 +29,16 @@ public class AlunoDAO extends SQLiteOpenHelper
         StringBuilder sb = new StringBuilder();
         sb.append("CREATE TABLE ");
         sb.append(TABLE_NAME);
-        sb.append(" (");
-        sb.append("  id INTEGER PRIMARY KEY");
-        sb.append(", nome TEXT UNIQUE NOT NULL");
-        sb.append(", endereco TEXT NOT NULL");
-        sb.append(", telefone TEXT");
-        sb.append(", website TEXT");
-        sb.append(", mediaFinal REAL");
+        sb.append("(");
+        sb.append(_ID      + " INTEGER PRIMARY KEY, ");
+        sb.append(_NAME    + " TEXT UNIQUE NOT NULL, ");
+        sb.append(_ADDRESS + " TEXT NOT NULL, ");
+        sb.append(_PHONE   + " TEXT, ");
+        sb.append(_WEBSITE + " TEXT, ");
+        sb.append(_FGRADE  + " REAL ");
         sb.append(")");
         String create = sb.toString();
-        //
-        db.execSQL(create);
+        db.execSQL(create); //, new String[] {_ID, _NAME, _ADDRESS, _PHONE, _WEBSITE, _FGRADE});
     }
 
     @Override
@@ -46,11 +51,11 @@ public class AlunoDAO extends SQLiteOpenHelper
     public long insert(Aluno aluno)
     {
         ContentValues data = new ContentValues();
-        data.put("nome", aluno.getNome());
-        data.put("endereco", aluno.getEndereco());
-        data.put("telefone", aluno.getTelefone());
-        data.put("website", aluno.getWebsite());
-        data.put("mediaFinal", aluno.getMediaFinal());
+        data.put(_NAME, aluno.getNome());
+        data.put(_ADDRESS, aluno.getEndereco());
+        data.put(_PHONE, aluno.getTelefone());
+        data.put(_WEBSITE, aluno.getWebsite());
+        data.put(_FGRADE, aluno.getMediaFinal());
         //
         SQLiteDatabase db = getWritableDatabase();
         long id = db.insert(TABLE_NAME, null, data);
@@ -82,11 +87,11 @@ public class AlunoDAO extends SQLiteOpenHelper
 		Long id = aluno.getId();
 
 		ContentValues data = new ContentValues();
-		data.put("nome", aluno.getNome());
-		data.put("endereco", aluno.getEndereco());
-		data.put("telefone", aluno.getTelefone());
-		data.put("website", aluno.getWebsite());
-		data.put("mediaFinal", aluno.getMediaFinal());
+		data.put(_NAME, aluno.getNome());
+        data.put(_ADDRESS, aluno.getEndereco());
+        data.put(_PHONE, aluno.getTelefone());
+        data.put(_WEBSITE, aluno.getWebsite());
+        data.put(_FGRADE, aluno.getMediaFinal());
 
 		SQLiteDatabase db = getWritableDatabase();
 		int nol = db.update(TABLE_NAME, data, "id=?", new String[] {Long.toString(id)});
@@ -107,12 +112,12 @@ public class AlunoDAO extends SQLiteOpenHelper
         while (c.moveToNext())
         {
             Aluno aluno = new Aluno();
-            aluno.setId(c.getLong(c.getColumnIndex("id")));
-            aluno.setNome(c.getString(c.getColumnIndex("nome")));
-            aluno.setEndereco(c.getString(c.getColumnIndex("endereco")));
-            aluno.setTelefone(c.getString(c.getColumnIndex("telefone")));
-            aluno.setWebsite(c.getString(c.getColumnIndex("website")));
-            aluno.setMediaFinal(c.getFloat(c.getColumnIndex("mediaFinal")));
+            aluno.setId(c.getLong(c.getColumnIndex(_ID)));
+            aluno.setNome(c.getString(c.getColumnIndex(_NAME)));
+            aluno.setEndereco(c.getString(c.getColumnIndex(_ADDRESS)));
+            aluno.setTelefone(c.getString(c.getColumnIndex(_PHONE)));
+            aluno.setWebsite(c.getString(c.getColumnIndex(_WEBSITE)));
+            aluno.setMediaFinal(c.getFloat(c.getColumnIndex(_FGRADE)));
             ret.add(aluno);
         }
         db.close();
