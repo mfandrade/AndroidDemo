@@ -1,9 +1,10 @@
 package com.wordpress.mfandrade.cadastro.activity;
 
 import android.app.*;
+import android.content.*;
 import android.os.*;
 import android.view.*;
-import android.view.View.OnClickListener;
+import android.view.View.*;
 import android.widget.*;
 import com.wordpress.mfandrade.cadastro.*;
 import com.wordpress.mfandrade.cadastro.dao.*;
@@ -32,5 +33,12 @@ public class FormAlunoActivity extends Activity
                 finish();
             }
         });
+		
+		Intent intent = getIntent();
+        Aluno dadosAluno = (Aluno) intent.getSerializableExtra("dadosAluno");
+        if(dadosAluno != null)
+		{
+			_binder.populateForm(dadosAluno);
+		}
     }
 }

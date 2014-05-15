@@ -23,6 +23,16 @@ public class BinderFormAluno
         _ratMediaFinal = (RatingBar) form.findViewById(R.id.form_aluno_ratMediaFinal);
     }
 
+	public void populateForm(Aluno aluno)
+	{
+		Toast.makeText(_edtNome.getContext(), "test " + aluno.getNome(), Toast.LENGTH_LONG).show();
+		_edtNome.setText(aluno.getNome());
+		_edtEndereco.setText(aluno.getEndereco());
+		_edtTelefone.setText(aluno.getTelefone());
+		_edtWebsite.setText(aluno.getWebsite());
+		_ratMediaFinal.setProgress(aluno.getMediaFinal().intValue());
+	}
+
     public Aluno getAluno()
     {
         aluno.setNome(_edtNome.getText().toString());

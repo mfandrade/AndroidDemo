@@ -40,7 +40,7 @@ public class ListaAlunosActivity extends Activity
             public void onItemClick(AdapterView<?> adapter, View v, int pos, long id)
             {
                 Intent formAluno = new Intent(ListaAlunosActivity.this, FormAlunoActivity.class);
-                formAluno.putExtra("dados_aluno", (Aluno) adapter.getItemAtPosition(pos));
+                formAluno.putExtra("dadosAluno", (Aluno) adapter.getItemAtPosition(pos));
                 startActivity(formAluno);
             }
         });
