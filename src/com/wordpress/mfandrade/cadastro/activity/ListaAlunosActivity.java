@@ -112,8 +112,8 @@ public class ListaAlunosActivity extends Activity
                 }
                 break;
             case R.id.lista_alunos_ctxmenu_acessar_website:
-                Intent visitSite = new Intent(Intent.ACTION_VIEW);
-                visitSite.setData(Uri.parse("http://" + _selecionado.getWebsite()));
+                Intent visitSite = new Intent(this, WebViewActivity.class);
+                visitSite.putExtra("website", "http://" + _selecionado.getWebsite());
                 startActivity(visitSite);
                 break;
             case R.id.lista_alunos_ctxmenu_deletar:
