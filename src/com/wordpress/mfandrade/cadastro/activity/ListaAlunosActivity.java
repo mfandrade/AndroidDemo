@@ -4,6 +4,7 @@ import android.app.*;
 import android.content.*;
 import android.net.*;
 import android.os.*;
+import android.telephony.*;
 import android.view.*;
 import android.view.ContextMenu.*;
 import android.widget.*;
@@ -98,11 +99,18 @@ public class ListaAlunosActivity extends Activity
                 startActivity(call);
                 break;
 			case R.id.lista_alunos_ctxmenu_enviar_sms:
-				Intent sendSms = new Intent(Intent.ACTION_VIEW);
-				sendSms.setData(Uri.parse("sms:"+_selecionado.getTelefone()));
-				sendSms.putExtra("sms_body", "Sua nota é " + _selecionado.getMediaFinal());
-				startActivity(sendSms);
-				break;
+				SmsManager smsManager = SmsManager.getDefault();
+                PendingIntent intent = PendingIntent.getActivity(this, 0, null, Intent.FLAG_ACTIVITY_NEW_TASK);
+                if (PhoneNumberUtils.isWellFormedSmsAddress(_selecionado.getTelefone()))
+                {
+                	smsManager.sendTextMessage(_selecionado.getTelefone(), null, "Sua nota é " + _selecionado.getMediaFinal(), intent, null);
+                    Toast.makeText(this, "SMS enviado", Toast.LENGTH_LONG).show();
+                }
+                else 
+                {
+                	Toast.makeText(this, "Falha ao enviar SMS. Tente novamente.", Toast.LENGTH_LONG).show();
+                }
+                break;
             case R.id.lista_alunos_ctxmenu_deletar:
                 //@formatter:off
                 new AlertDialog.Builder(this)
