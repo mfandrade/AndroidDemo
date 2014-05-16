@@ -93,10 +93,16 @@ public class ListaAlunosActivity extends Activity
         switch (item.getItemId())
         {
 			case R.id.lista_alunos_ctxmenu_ligar:
-                Intent call = new Intent(Intent.ACTION_DIAL);
+                Intent call = new Intent(Intent.ACTION_VIEW);
                 call.setData(Uri.parse("tel:" + _selecionado.getTelefone()));
                 startActivity(call);
                 break;
+			case R.id.lista_alunos_ctxmenu_enviar_sms:
+				Intent sendSms = new Intent(Intent.ACTION_VIEW);
+				sendSms.setData(Uri.parse("sms:"+_selecionado.getTelefone()));
+				sendSms.putExtra("sms_body", "Sua nota é " + _selecionado.getMediaFinal());
+				startActivity(sendSms);
+				break;
             case R.id.lista_alunos_ctxmenu_deletar:
                 //@formatter:off
                 new AlertDialog.Builder(this)
