@@ -100,16 +100,21 @@ public class ListaAlunosActivity extends Activity
                 break;
 			case R.id.lista_alunos_ctxmenu_enviar_sms:
 				SmsManager smsManager = SmsManager.getDefault();
-                PendingIntent intent = PendingIntent.getActivity(this, 0, null, Intent.FLAG_ACTIVITY_NEW_TASK);
+                PendingIntent sendSms = PendingIntent.getActivity(this, 0, null, Intent.FLAG_ACTIVITY_NEW_TASK);
                 if (PhoneNumberUtils.isWellFormedSmsAddress(_selecionado.getTelefone()))
                 {
-                	smsManager.sendTextMessage(_selecionado.getTelefone(), null, "Sua nota é " + _selecionado.getMediaFinal(), intent, null);
+                	smsManager.sendTextMessage(_selecionado.getTelefone(), null, "Sua nota é " + _selecionado.getMediaFinal(), sendSms, null);
                     Toast.makeText(this, "SMS enviado", Toast.LENGTH_LONG).show();
                 }
                 else 
                 {
                 	Toast.makeText(this, "Falha ao enviar SMS. Tente novamente.", Toast.LENGTH_LONG).show();
                 }
+                break;
+            case R.id.lista_alunos_ctxmenu_acessar_website:
+                Intent visitSite = new Intent(Intent.ACTION_VIEW);
+                visitSite.setData(Uri.parse("http://" + _selecionado.getWebsite()));
+                startActivity(visitSite);
                 break;
             case R.id.lista_alunos_ctxmenu_deletar:
                 //@formatter:off
