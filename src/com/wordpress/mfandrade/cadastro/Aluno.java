@@ -83,6 +83,6 @@ public class Aluno implements Serializable
     @Override
     public String toString()
     {
-        return _id + ") " + _nome;
+        return _id + ". " + _nome;
     }
 }

@@ -93,7 +93,7 @@ public class ListaAlunosActivity extends Activity
         switch (item.getItemId())
         {
 			case R.id.lista_alunos_ctxmenu_ligar:
-                Intent call = new Intent(Intent.ACTION_CALL);
+                Intent call = new Intent(Intent.ACTION_DIAL);
                 call.setData(Uri.parse("tel:" + _selecionado.getTelefone()));
                 startActivity(call);
                 break;
