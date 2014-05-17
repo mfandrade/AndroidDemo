@@ -116,6 +116,12 @@ public class ListaAlunosActivity extends Activity
                 visitSite.putExtra("website", "http://" + _selecionado.getWebsite());
                 startActivity(visitSite);
                 break;
+			case R.id.lista_alunos_ctxmenu_mapa:
+				Intent viewMap = new Intent(Intent.ACTION_VIEW);
+				String address = _selecionado.getEndereco();
+				viewMap.setData(Uri.parse("geo:0,0?q=" + address));
+				startActivity(viewMap);
+				break;
             case R.id.lista_alunos_ctxmenu_deletar:
                 //@formatter:off
                 new AlertDialog.Builder(this)
