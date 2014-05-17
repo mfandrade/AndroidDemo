@@ -7,6 +7,7 @@ import com.wordpress.mfandrade.cadastro.activity.*;
 public class BinderFormAluno
 {
     private Aluno _aluno;
+	private ImageView _imgFoto;
     private EditText _edtNome;
     private EditText _edtEndereco;
     private EditText _edtTelefone;
@@ -16,6 +17,7 @@ public class BinderFormAluno
     public BinderFormAluno(FormAlunoActivity form)
     {
         _aluno = new Aluno();
+		_imgFoto = (ImageView) form.findViewById(R.id.form_aluno_imgFoto);
         _edtNome = (EditText) form.findViewById(R.id.form_aluno_edtNome);
         _edtEndereco = (EditText) form.findViewById(R.id.form_aluno_edtEndereco);
         _edtTelefone = (EditText) form.findViewById(R.id.form_aluno_edtTelefone);
@@ -42,4 +44,9 @@ public class BinderFormAluno
         _aluno.setMediaFinal(Float.valueOf(_ratMediaFinal.getProgress()));
         return _aluno;
     }
+	
+	public ImageView getFoto()
+	{
+		return _imgFoto;
+	}
 }

@@ -2,17 +2,21 @@ package com.wordpress.mfandrade.cadastro.activity;
 
 import android.app.*;
 import android.content.*;
+import android.net.*;
 import android.os.*;
+import android.provider.*;
 import android.view.*;
-import android.view.View.OnClickListener;
+import android.view.View.*;
 import android.widget.*;
 import com.wordpress.mfandrade.cadastro.*;
 import com.wordpress.mfandrade.cadastro.dao.*;
 import com.wordpress.mfandrade.cadastro.databinder.*;
+import java.io.*;
 
 public class FormAlunoActivity extends Activity
 {
     private BinderFormAluno _binder;
+	private String _localFoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -40,5 +44,18 @@ public class FormAlunoActivity extends Activity
                 finish();
             }
         });
+		
+		ImageView foto = _binder.getFoto();
+		foto.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				_localFoto = getExternalFilesDirs(null) + "/" + System.currentTimeMillis();
+				Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+				camera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(_localFoto)));
+				startActivityForResult(camera, 987);
+			}
+		});
     }
 }
