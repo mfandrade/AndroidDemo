@@ -122,6 +122,14 @@ public class ListaAlunosActivity extends Activity
 				viewMap.setData(Uri.parse("geo:0,0?q=" + address));
 				startActivity(viewMap);
 				break;
+			case R.id.lista_alunos_ctxmenu_enviar_email:
+				Intent sendEmail = new Intent(Intent.ACTION_SEND);
+				sendEmail.setType("message/rfc822");
+				sendEmail.putExtra(Intent.EXTRA_EMAIL, new String[] {"cadastrocaelum@mailinator.com"});
+				sendEmail.putExtra(Intent.EXTRA_SUBJECT, "Nota por e-mail");
+				sendEmail.putExtra(Intent.EXTRA_TEXT, "Sua nota é " + _selecionado.getMediaFinal());
+				startActivity(sendEmail);
+				break;
             case R.id.lista_alunos_ctxmenu_deletar:
                 //@formatter:off
                 new AlertDialog.Builder(this)

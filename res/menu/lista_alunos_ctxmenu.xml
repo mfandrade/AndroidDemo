@@ -13,6 +13,9 @@
     <item
         android:id="@+id/lista_alunos_ctxmenu_mapa"
         android:title="@string/ctx_mostrar_no_mapa"/>
+	<item
+        android:id="@+id/lista_alunos_ctxmenu_enviar_email"
+        android:title="@string/ctx_enviar_email"/>
     <item
         android:id="@+id/lista_alunos_ctxmenu_deletar"
         android:title="@string/ctx_deletar"/>
