@@ -128,7 +128,12 @@ public class ListaAlunosActivity extends Activity
 				email.putExtra(Intent.EXTRA_EMAIL, new String[] {"cadastrocaelum@mailinator.com"});
 				email.putExtra(Intent.EXTRA_SUBJECT, "Nota por e-mail");
 				email.putExtra(Intent.EXTRA_TEXT, "Sua nota é " + _selecionado.getMediaFinal());
-				startActivity(Intent.createChooser(email, "Enviar e-mail usando..."));
+				
+				if (email.resolveActivity(getPackageManager()) != null)
+				{
+					startActivity(Intent.createChooser(email, "Enviar usando"));
+					Toast.makeText(this, "Nota enviada", Toast.LENGTH_LONG).show();
+				}
 				break;
             case R.id.lista_alunos_ctxmenu_deletar:
                 //@formatter:off
