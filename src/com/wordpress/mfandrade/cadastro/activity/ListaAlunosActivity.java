@@ -99,11 +99,11 @@ public class ListaAlunosActivity extends Activity
                 startActivity(call);
                 break;
 			case R.id.lista_alunos_ctxmenu_enviar_sms:
-				SmsManager smsManager = SmsManager.getDefault();
+				SmsManager sms = SmsManager.getDefault();
                 PendingIntent sendSms = PendingIntent.getActivity(this, 0, null, Intent.FLAG_ACTIVITY_NEW_TASK);
                 if (PhoneNumberUtils.isWellFormedSmsAddress(_selecionado.getTelefone()))
                 {
-                	smsManager.sendTextMessage(_selecionado.getTelefone(), null, "Sua nota é " + _selecionado.getMediaFinal(), sendSms, null);
+                	sms.sendTextMessage(_selecionado.getTelefone(), null, "Sua nota é " + _selecionado.getMediaFinal(), sendSms, null);
                     Toast.makeText(this, "SMS enviado", Toast.LENGTH_LONG).show();
                 }
                 else 
@@ -112,23 +112,23 @@ public class ListaAlunosActivity extends Activity
                 }
                 break;
             case R.id.lista_alunos_ctxmenu_acessar_website:
-                Intent visitSite = new Intent(this, WebViewActivity.class);
-                visitSite.putExtra("website", "http://" + _selecionado.getWebsite());
-                startActivity(visitSite);
+                Intent site = new Intent(this, WebViewActivity.class);
+                site.putExtra("website", "http://" + _selecionado.getWebsite());
+                startActivity(site);
                 break;
 			case R.id.lista_alunos_ctxmenu_mapa:
-				Intent viewMap = new Intent(Intent.ACTION_VIEW);
+				Intent map = new Intent(Intent.ACTION_VIEW);
 				String address = _selecionado.getEndereco();
-				viewMap.setData(Uri.parse("geo:0,0?q=" + address));
-				startActivity(viewMap);
+				map.setData(Uri.parse("geo:0,0?q=" + address));
+				startActivity(map);
 				break;
 			case R.id.lista_alunos_ctxmenu_enviar_email:
-				Intent sendEmail = new Intent(Intent.ACTION_SEND);
-				sendEmail.setType("message/rfc822");
-				sendEmail.putExtra(Intent.EXTRA_EMAIL, new String[] {"cadastrocaelum@mailinator.com"});
-				sendEmail.putExtra(Intent.EXTRA_SUBJECT, "Nota por e-mail");
-				sendEmail.putExtra(Intent.EXTRA_TEXT, "Sua nota é " + _selecionado.getMediaFinal());
-				startActivity(sendEmail);
+				Intent email = new Intent(Intent.ACTION_SEND);
+				email.setType("message/rfc822");
+				email.putExtra(Intent.EXTRA_EMAIL, new String[] {"cadastrocaelum@mailinator.com"});
+				email.putExtra(Intent.EXTRA_SUBJECT, "Nota por e-mail");
+				email.putExtra(Intent.EXTRA_TEXT, "Sua nota é " + _selecionado.getMediaFinal());
+				startActivity(Intent.createChooser(email, "Enviar e-mail usando..."));
 				break;
             case R.id.lista_alunos_ctxmenu_deletar:
                 //@formatter:off
