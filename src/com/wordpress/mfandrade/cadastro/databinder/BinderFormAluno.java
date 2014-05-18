@@ -39,7 +39,6 @@ public class BinderFormAluno
 
 	public Aluno getAluno()
 	{
-		//_aluno.setArquivoFoto(arquivoFoto);
 		_aluno.setNome(_edtNome.getText().toString());
 		_aluno.setEndereco(_edtEndereco.getText().toString());
 		_aluno.setTelefone(_edtTelefone.getText().toString());
