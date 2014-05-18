@@ -1,13 +1,13 @@
-package com.wordpress.mfandrade.cadastro.databinder;
+package com.wordpress.mfandrade.cadastro.dao.databinder;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import com.wordpress.mfandrade.cadastro.Aluno;
 import com.wordpress.mfandrade.cadastro.R;
 import com.wordpress.mfandrade.cadastro.activity.FormAlunoActivity;
+import com.wordpress.mfandrade.cadastro.entity.Aluno;
 
 public class BinderFormAluno {
   private Aluno _aluno;

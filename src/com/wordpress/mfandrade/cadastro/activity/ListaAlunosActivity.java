@@ -20,9 +20,9 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-import com.wordpress.mfandrade.cadastro.Aluno;
 import com.wordpress.mfandrade.cadastro.R;
 import com.wordpress.mfandrade.cadastro.dao.AlunoDAO;
+import com.wordpress.mfandrade.cadastro.entity.Aluno;
 import java.util.List;
 
 public class ListaAlunosActivity extends Activity {

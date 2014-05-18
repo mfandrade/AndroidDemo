@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import com.wordpress.mfandrade.cadastro.Aluno;
+import com.wordpress.mfandrade.cadastro.entity.Aluno;
 import java.util.LinkedList;
 import java.util.List;
 

@@ -9,10 +9,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
-import com.wordpress.mfandrade.cadastro.Aluno;
 import com.wordpress.mfandrade.cadastro.R;
 import com.wordpress.mfandrade.cadastro.dao.AlunoDAO;
-import com.wordpress.mfandrade.cadastro.databinder.BinderFormAluno;
+import com.wordpress.mfandrade.cadastro.dao.databinder.BinderFormAluno;
+import com.wordpress.mfandrade.cadastro.entity.Aluno;
 import java.io.File;
 
 public class FormAlunoActivity extends Activity {
