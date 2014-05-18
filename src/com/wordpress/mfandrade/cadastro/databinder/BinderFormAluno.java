@@ -1,5 +1,6 @@
 package com.wordpress.mfandrade.cadastro.databinder;
 
+import android.graphics.*;
 import android.widget.*;
 import com.wordpress.mfandrade.cadastro.*;
 import com.wordpress.mfandrade.cadastro.activity.*;
@@ -27,6 +28,7 @@ public class BinderFormAluno
 
 	public void populateForm(Aluno aluno)
 	{
+		carregarImagem(aluno.getArquivoFoto());
 		_edtNome.setText(aluno.getNome());
 		_edtEndereco.setText(aluno.getEndereco());
 		_edtTelefone.setText(aluno.getTelefone());
@@ -37,6 +39,7 @@ public class BinderFormAluno
 
 	public Aluno getAluno()
 	{
+		//_aluno.setArquivoFoto(arquivoFoto);
 		_aluno.setNome(_edtNome.getText().toString());
 		_aluno.setEndereco(_edtEndereco.getText().toString());
 		_aluno.setTelefone(_edtTelefone.getText().toString());
@@ -45,8 +48,10 @@ public class BinderFormAluno
 		return _aluno;
 	}
 
-	public ImageView getFoto()
+	public void carregarImagem(String fotoACarregar)
 	{
-		return _imgFoto;
+		Bitmap foto = BitmapFactory.decodeFile(fotoACarregar);
+		Bitmap fotoMin = Bitmap.createScaledBitmap(foto, _imgFoto.getWidth(), _imgFoto.getHeight(), true);
+		_imgFoto.setImageBitmap(fotoMin);
 	}
 }

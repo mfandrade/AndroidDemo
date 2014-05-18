@@ -11,6 +11,7 @@ public class Aluno implements Serializable
 	private String _telefone;
 	private String _website;
 	private Float _mediaFinal;
+	private String _arquivoFoto;
 
 	public Aluno()
 	{}
@@ -84,5 +85,15 @@ public class Aluno implements Serializable
 	public String toString()
 	{
 		return _id + ". " + _nome;
+	}
+
+	public void setArquivoFoto(String arquivoFoto)
+	{
+		_arquivoFoto = arquivoFoto;
+	}
+
+	public String getArquivoFoto()
+	{
+		return _arquivoFoto;
 	}
 }

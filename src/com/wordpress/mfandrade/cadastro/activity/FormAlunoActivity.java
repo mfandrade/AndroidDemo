@@ -15,8 +15,8 @@ import com.wordpress.mfandrade.cadastro.databinder.*;
 
 public class FormAlunoActivity extends Activity
 {
+	private static final int TIRANDO_FOTO = 987;
 	private BinderFormAluno _binder;
-	private String _localFoto;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -44,17 +44,27 @@ public class FormAlunoActivity extends Activity
 				finish();
 			}
 		});
-		ImageView foto = _binder.getFoto();
+		ImageView foto = (ImageView) findViewById(R.id.form_aluno_imgFoto);
 		foto.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
 			{
-				_localFoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis();
+				String arquivoFoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
+				_binder.getAluno().setArquivoFoto(arquivoFoto);
 				Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-				camera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(_localFoto)));
-				startActivityForResult(camera, 987);
+				camera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(arquivoFoto)));
+				startActivityForResult(camera, TIRANDO_FOTO);
 			}
 		});
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent intent)
+	{
+		if (requestCode == TIRANDO_FOTO && resultCode == Activity.RESULT_OK)
+		{
+			_binder.carregarImagem(_binder.getAluno().getArquivoFoto());
+		}
 	}
 }

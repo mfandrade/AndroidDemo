@@ -8,7 +8,7 @@ import com.wordpress.mfandrade.cadastro.*;
 
 public class AlunoDAO extends SQLiteOpenHelper
 {
-	private static final int DATABASE_VERSION = 4;
+	private static final int DATABASE_VERSION = 5;
 	private static final String DATABASE_NAME = "CadastroCaelum";
 	private static final String TABLE_NAME = "alunos";
 	private static final String _ID = "id";
@@ -17,6 +17,7 @@ public class AlunoDAO extends SQLiteOpenHelper
 	private static final String _PHONE = "telefone";
 	private static final String _WEBSITE = "website";
 	private static final String _FGRADE = "mediaFinal";
+	private static final String _PHOTO = "arquivoFoto";
 
 	public AlunoDAO(Context context)
 	{
@@ -35,10 +36,11 @@ public class AlunoDAO extends SQLiteOpenHelper
 		sb.append(_ADDRESS + " TEXT NOT NULL, ");
 		sb.append(_PHONE + " TEXT, ");
 		sb.append(_WEBSITE + " TEXT, ");
-		sb.append(_FGRADE + " REAL ");
+		sb.append(_FGRADE + " REAL, ");
+		sb.append(_PHOTO + " STRING ");
 		sb.append(")");
 		String create = sb.toString();
-		db.execSQL(create); //, new String[] {_ID, _NAME, _ADDRESS, _PHONE, _WEBSITE, _FGRADE});
+		db.execSQL(create); //, new String[] {_ID, _NAME, _ADDRESS, _PHONE, _WEBSITE, _FGRADE, _PHOTO});
 	}
 
 	@Override
@@ -67,6 +69,7 @@ public class AlunoDAO extends SQLiteOpenHelper
 		data.put(_PHONE, aluno.getTelefone());
 		data.put(_WEBSITE, aluno.getWebsite());
 		data.put(_FGRADE, aluno.getMediaFinal());
+		data.put(_PHOTO, aluno.getArquivoFoto());
 		SQLiteDatabase db = getWritableDatabase();
 		try
 		{
@@ -105,6 +108,7 @@ public class AlunoDAO extends SQLiteOpenHelper
 			aluno.setTelefone(c.getString(c.getColumnIndex(_PHONE)));
 			aluno.setWebsite(c.getString(c.getColumnIndex(_WEBSITE)));
 			aluno.setMediaFinal(c.getFloat(c.getColumnIndex(_FGRADE)));
+			aluno.setArquivoFoto(c.getString(c.getColumnIndex(_PHOTO)));
 			ret.add(aluno);
 		}
 		db.close();
