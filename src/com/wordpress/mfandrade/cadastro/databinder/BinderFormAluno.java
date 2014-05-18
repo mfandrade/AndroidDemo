@@ -39,7 +39,6 @@ public class BinderFormAluno
 
 	public Aluno getAluno()
 	{
-		//_aluno.setArquivoFoto(arquivoFoto);
 		_aluno.setNome(_edtNome.getText().toString());
 		_aluno.setEndereco(_edtEndereco.getText().toString());
 		_aluno.setTelefone(_edtTelefone.getText().toString());
@@ -51,7 +50,7 @@ public class BinderFormAluno
 	public void carregarImagem(String fotoACarregar)
 	{
 		Bitmap foto = BitmapFactory.decodeFile(fotoACarregar);
-		Bitmap fotoMin = Bitmap.createScaledBitmap(foto, _imgFoto.getWidth(), _imgFoto.getHeight(), true);
+		Bitmap fotoMin = Bitmap.createScaledBitmap(foto, 160, 120, true);
 		_imgFoto.setImageBitmap(fotoMin);
 	}
 }
