@@ -48,8 +48,10 @@ public class BinderFormAluno {
   }
 
   public void carregarImagem(String fotoACarregar) {
-	Bitmap foto = BitmapFactory.decodeFile(fotoACarregar);
-	Bitmap fotoMin = Bitmap.createScaledBitmap(foto, 160, 120, true);
-	_imgFoto.setImageBitmap(fotoMin);
+	if (fotoACarregar != null) {
+	  Bitmap foto = BitmapFactory.decodeFile(fotoACarregar);
+	  Bitmap fotoMin = Bitmap.createScaledBitmap(foto, 160, 120, true);
+	  _imgFoto.setImageBitmap(fotoMin);
+	}
   }
 }
